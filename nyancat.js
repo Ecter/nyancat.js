@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
 var colors = require('colors')
-    //play = require('play').Play(),
 process.stdin.resume()
 
 var self = this;
 
-var width = process.stdout.columns
-  , height = process.stdout.rows
+var width = process.stdout.columns || 80
+  , height = process.stdout.rows || 40
   , flag = "`·.,¸,.·*¯"
     // current cat is from http://asciimator.net/asciimation/9257
     // modified, added top ears, UU legs
@@ -52,7 +51,8 @@ function nyanxit() {
 }
 
 // User Control Stuff
-process.stdin.setRawMode(true);
+if(typeof process.stdin.setRawMode == 'callable'){
+process.stdin.setRawMode(true);}
 process.stdin.setEncoding('utf8')
 process.stdin.on('data', function(key) {
   if (key === 'c')
